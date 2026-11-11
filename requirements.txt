@@ -1,0 +1,7 @@
+numpy>=1.26
+scipy>=1.11      # HiGHS LP/MILP solver is bundled with SciPy
+pandas>=2.1
+pyyaml>=6.0
+plotly>=5.18
+openpyxl>=3.1
+streamlit>=1.32  # only needed for the web dashboard (app.py)
