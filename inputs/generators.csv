@@ -1,0 +1,34 @@
+id,name,owner,zone,tech,fuel,capacity_mw,availability,min_gen_frac,heat_rate_gj_mwh,var_om_usd_mwh,capacity_charge_usd_kw_month,energy_charge_usd_mwh,take_or_pay,reserve_capable,startup_usd_mw,profile,reservoir,co2_t_mwh,commission_year,retire_year
+MASINGA,Masinga,KenGen,MT_KENYA,hydro_res,NONE,40,0.92,0.0,0,1.0,8.0,4.0,0,1,0,,TANA,0,1981,2080
+KAMBURU,Kamburu,KenGen,MT_KENYA,hydro_res,NONE,94,0.92,0.0,0,1.0,8.0,4.0,0,1,0,,TANA,0,1974,2080
+GITARU,Gitaru,KenGen,MT_KENYA,hydro_res,NONE,225,0.92,0.0,0,1.0,8.0,4.0,0,1,0,,TANA,0,1978,2080
+KINDARUMA,Kindaruma,KenGen,MT_KENYA,hydro_res,NONE,72,0.92,0.0,0,1.0,8.0,4.0,0,1,0,,TANA,0,1968,2080
+KIAMBERE,Kiambere,KenGen,MT_KENYA,hydro_res,NONE,168,0.92,0.0,0,1.0,8.0,4.0,0,1,0,,TANA,0,1988,2080
+TURKWEL,Turkwel,KenGen,NORTH_RIFT,hydro_res,NONE,106,0.92,0.0,0,1.0,8.0,4.0,0,1,0,,TURKWEL,0,1991,2080
+SONDU,Sondu Miriu + Sang'oro,KenGen,WESTERN,hydro_ror,NONE,81,0.93,0.0,0,1.0,9.0,4.0,1,0,0,ror_west,,0,2008,2080
+SMALL_HYDRO,Tana/Wanjii/small hydros,KenGen & IPPs,MT_KENYA,hydro_ror,NONE,60,0.90,0.0,0,1.0,9.0,5.0,1,0,0,ror_small,,0,1955,2080
+OLK_I,Olkaria I (units 1-3),KenGen,SOUTH_RIFT,geothermal,NONE,45,0.75,0.60,0,3.0,20.0,18.0,1,0,0,,,0.045,1981,2030
+OLK_I_AU,Olkaria I AU 4-6,KenGen,SOUTH_RIFT,geothermal,NONE,223,0.82,0.60,0,3.0,25.0,18.0,1,0,0,,,0.045,2014,2080
+OLK_II,Olkaria II,KenGen,SOUTH_RIFT,geothermal,NONE,105,0.85,0.60,0,3.0,22.0,18.0,1,0,0,,,0.045,2003,2080
+OLK_IV,Olkaria IV,KenGen,SOUTH_RIFT,geothermal,NONE,140,0.85,0.60,0,3.0,25.0,18.0,1,0,0,,,0.045,2014,2080
+OLK_V,Olkaria V,KenGen,SOUTH_RIFT,geothermal,NONE,172,0.80,0.60,0,3.0,26.0,18.0,1,0,0,,,0.045,2019,2080
+OLK_WELL,Olkaria wellheads,KenGen,SOUTH_RIFT,geothermal,NONE,83,0.75,0.50,0,3.0,18.0,18.0,1,0,0,,,0.045,2016,2080
+ORPOWER4,Orpower 4 (Olkaria III),Ormat (IPP),SOUTH_RIFT,geothermal,NONE,150,0.92,0.60,0,0.0,0.0,95.0,1,0,0,,,0.030,2000,2045
+MENENGAI,Menengai I (Sosian/QPEA/Globeleq),IPPs + GDC steam,SOUTH_RIFT,geothermal,NONE,105,0.80,0.60,0,0.0,0.0,105.0,1,0,0,,,0.030,2024,2080
+LTWP,Lake Turkana Wind Power,LTWP (IPP),NORTH_RIFT,wind,NONE,310,0.97,0.0,0,0.0,0.0,82.0,1,0,0,turkana_wind,,0,2018,2080
+KIPETO,Kipeto Wind,Kipeto Energy (IPP),SOUTH_RIFT,wind,NONE,100,0.97,0.0,0,0.0,0.0,100.0,1,0,0,kipeto_wind,,0,2021,2080
+NGONG,Ngong Wind I-II,KenGen,NAIROBI,wind,NONE,25.5,0.95,0.0,0,0.0,0.0,110.0,1,0,0,ngong_wind,,0,2009,2080
+GARISSA,Garissa Solar,REREC,MT_KENYA,solar,NONE,50,0.98,0.0,0,0.0,0.0,120.0,1,0,0,solar_north,,0,2018,2080
+MALINDI,Malindi Solar,Globeleq (IPP),COAST,solar,NONE,40,0.98,0.0,0,0.0,0.0,110.0,1,0,0,solar_coast,,0,2021,2080
+ELDOSOL,Eldosol + Radiant + Selenkei,IPPs,NORTH_RIFT,solar,NONE,120,0.98,0.0,0,0.0,0.0,105.0,1,0,0,solar_north,,0,2022,2080
+ALTEN,Alten Kesses + Cedate + Kopere,IPPs,WESTERN,solar,NONE,110,0.98,0.0,0,0.0,0.0,100.0,1,0,0,solar_rift,,0,2023,2080
+KIPEVU3,Kipevu III MSD,KenGen,COAST,thermal,HFO,115,0.85,0.40,8.90,12.0,15.0,0.0,0,1,20,,,0,2011,2036
+RABAI,Rabai Power,IPP,COAST,thermal,HFO,90,0.88,0.40,8.70,12.0,23.0,0.0,0,1,20,,,0,2010,2030
+THIKA,Thika Power,IPP,MT_KENYA,thermal,HFO,87,0.88,0.40,8.70,13.0,24.0,0.0,0,1,20,,,0,2014,2034
+TRIUMPH,Triumph Power,IPP,NAIROBI,thermal,HFO,83,0.88,0.40,8.70,13.0,24.0,0.0,0,1,20,,,0,2015,2035
+GULF,Gulf Power,IPP,NAIROBI,thermal,HFO,80,0.88,0.40,8.80,13.0,23.0,0.0,0,1,20,,,0,2014,2034
+MUHORONI,Muhoroni GT (emergency),KenGen,WESTERN,thermal,GASOIL,60,0.80,0.30,12.50,8.0,6.0,0.0,0,1,15,,,0,2009,2032
+KWALE_BIO,Kwale sugar cogeneration,IPP,COAST,biomass,NONE,10,0.60,0.0,0,2.0,0.0,75.0,0,0,0,,,0,2017,2080
+ETHIOPIA_1,Ethiopia import PPA phase 1 (HVDC Sodo-Suswa),EEP,SOUTH_RIFT,import,NONE,200,0.95,0.0,0,0.0,0.0,65.0,1,0,0,,,0,2022,2080
+ETHIOPIA_2,Ethiopia import PPA phase 2,EEP,SOUTH_RIFT,import,NONE,200,0.95,0.0,0,0.0,0.0,65.0,1,0,0,,,0,2026,2080
+UGANDA_IMP,Uganda import (spot/bilateral),UEGCL/UETCL,WESTERN,import,NONE,50,0.90,0.0,0,0.0,0.0,95.0,0,1,0,,,0,2015,2080

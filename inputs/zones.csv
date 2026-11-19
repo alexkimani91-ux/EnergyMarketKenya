@@ -1,0 +1,7 @@
+zone,name,demand_share,description
+NAIROBI,Nairobi Region,0.50,"Nairobi, Kiambu, Machakos, Kajiado north - main load centre"
+COAST,Coast Region,0.15,"Mombasa, Kilifi, Kwale, Malindi - port & industry, HFO plants"
+MT_KENYA,Mt Kenya & North-East,0.10,"Seven Forks Tana cascade, Thika, Nyeri, Meru, Garissa"
+WESTERN,Western & Nyanza,0.10,"Kisumu, Kakamega, Sondu Miriu, Uganda interconnector (Tororo-Lessos)"
+NORTH_RIFT,North Rift & Turkana,0.08,"Eldoret, Kitale, Turkwel, Lake Turkana Wind, Eldosol"
+SOUTH_RIFT,South & Central Rift,0.07,"Olkaria, Menengai, Naivasha, Nakuru, Suswa HVDC terminal (Ethiopia)"

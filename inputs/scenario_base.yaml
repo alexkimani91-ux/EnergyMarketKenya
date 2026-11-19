@@ -1,0 +1,119 @@
+# =====================================================================
+#  KENYA POWER MARKET MODEL  -  BASE SCENARIO
+#  All monetary values in USD (real 2025) unless stated otherwise.
+#  Values are indicative public-domain estimates (EPRA, KPLC annual
+#  reports, LCPDP, KenGen/IPP disclosures). Replace with your own data.
+# =====================================================================
+
+scenario_name: "Base 2026"
+model_year: 2026            # year simulated by the hourly dispatch model
+base_year: 2025             # year the demand inputs below refer to
+random_seed: 42
+
+# ---------------------------------------------------------------------
+# DEMAND (sent-out, i.e. at generator busbar, before T&D losses)
+# ---------------------------------------------------------------------
+demand:
+  base_energy_gwh: 14200       # annual sent-out energy in base_year
+  base_peak_mw: 2420           # annual system peak in base_year
+  energy_growth: 0.055         # p.a. growth in energy
+  peak_growth: 0.050           # p.a. growth in peak (sets load-factor trend)
+  noise_sd: 0.015              # hourly stochastic noise (fraction)
+  # weekday hourly shape (p.u. of daily peak) - Kenya evening peak ~19-21h
+  hourly_shape: [0.62, 0.59, 0.57, 0.56, 0.57, 0.62, 0.70, 0.78, 0.83, 0.86, 0.87, 0.88,
+                 0.87, 0.86, 0.85, 0.85, 0.86, 0.89, 0.97, 1.00, 0.98, 0.92, 0.82, 0.71]
+  weekend_factor: {sat: 0.93, sun: 0.86}
+  monthly_factor: [1.00, 1.01, 1.01, 0.98, 0.97, 0.97, 0.98, 0.99, 1.00, 1.01, 1.00, 0.98]
+  # Additional (policy-driven) loads layered on top of the organic forecast
+  extra_loads:
+    e_mobility:   {zone: NAIROBI, annual_gwh: 60,  profile: evening}   # e-bikes, buses
+    e_cooking:    {zone: NAIROBI, annual_gwh: 40,  profile: cooking}
+    green_h2:     {zone: SOUTH_RIFT, annual_gwh: 0, profile: flat}     # Olkaria/Naivasha H2 hub
+    data_centres: {zone: NAIROBI, annual_gwh: 80,  profile: flat}
+
+# ---------------------------------------------------------------------
+# HYDROLOGY
+# ---------------------------------------------------------------------
+hydrology:
+  scenario: normal             # dry | normal | wet  (columns in hydro_inflows.csv)
+  inflow_multiplier: 1.0       # extra scaling on top of the scenario
+  end_storage_equals_start: true   # end-of-year reservoir level must be >= start level
+
+# ---------------------------------------------------------------------
+# VARIABLE RENEWABLE RESOURCE PROFILES (synthetic generators, see profiles.py)
+# Put an 8760-row CSV named <profile>.csv in inputs/profiles/ to override.
+# ---------------------------------------------------------------------
+vre_profiles:
+  turkana_wind: {type: wind, cf: 0.50, night_bias: 0.25, season_amp: 0.15, peak_month: 7}
+  kipeto_wind:  {type: wind, cf: 0.42, night_bias: 0.05, season_amp: 0.12, peak_month: 8}
+  ngong_wind:   {type: wind, cf: 0.30, night_bias: 0.05, season_amp: 0.10, peak_month: 8}
+  marsabit_wind: {type: wind, cf: 0.48, night_bias: 0.20, season_amp: 0.15, peak_month: 7}
+  solar_north:  {type: solar, cf: 0.235, cloud_rainy: 0.25}
+  solar_coast:  {type: solar, cf: 0.205, cloud_rainy: 0.30}
+  solar_rift:   {type: solar, cf: 0.215, cloud_rainy: 0.30}
+
+# ---------------------------------------------------------------------
+# FUELS & CARBON
+# ---------------------------------------------------------------------
+fuels:                         # price USD/GJ ; emission factor tCO2/GJ
+  HFO:     {price: 12.8, ef: 0.0774}   # ~USD 520/t delivered Mombasa
+  GASOIL:  {price: 18.6, ef: 0.0741}   # ~USD 800/t
+  LNG:     {price: 12.0, ef: 0.0561}
+  BIOMASS: {price: 2.5,  ef: 0.0}
+  URANIUM: {price: 0.9,  ef: 0.0}
+  NONE:    {price: 0.0,  ef: 0.0}
+carbon_price_usd_t: 0.0
+
+# ---------------------------------------------------------------------
+# SYSTEM OPERATION
+# ---------------------------------------------------------------------
+operation:
+  voll_usd_mwh: 3000           # value of lost load (unserved energy penalty)
+  reserve_frac_of_load: 0.05   # spinning reserve = max(largest contingency, frac*load)
+  largest_contingency_mw: 200  # e.g. HVDC pole / largest unit
+  reserve_shortfall_penalty: 800
+  geothermal_curtail_cost: 2.0 # small physical cost of venting steam (USD/MWh)
+  vre_curtail_cost: 0.5
+  wheeling_hurdle_usd_mwh: 0.2 # small hurdle on lines to avoid degenerate flows
+  water_value_floor: 5.0
+  resolution_hours: 1          # 1 = hourly; 2,3,4 = faster block dispatch
+  unit_commitment: lp          # lp (relaxed, fast) | milp (integer, exact, slower)
+  rolling_window_h: 168
+  lookahead_h: 48
+
+# ---------------------------------------------------------------------
+# EXPORTS / INTERCONNECTOR SALES (flexible, price-taking)
+# ---------------------------------------------------------------------
+exports:
+  UGANDA_EXPORT:   {zone: WESTERN,    max_mw: 60, price_usd_mwh: 70}
+  TANZANIA_EXPORT: {zone: SOUTH_RIFT, max_mw: 50, price_usd_mwh: 75}
+
+# ---------------------------------------------------------------------
+# FINANCE / RETAIL TARIFF BUILD-UP
+# ---------------------------------------------------------------------
+finance:
+  fx_kes_per_usd: 129.0
+  td_loss_frac: 0.23              # system losses (technical + commercial), share of sent-out
+  transmission_cost_usd_mwh: 9.0  # KETRACO + KPLC transmission revenue requirement
+  distribution_cost_kes_kwh: 4.6  # KPLC distribution & retail (opex + capex + return)
+  levies:
+    rep_levy_frac: 0.05           # Rural Electrification Programme levy (on base energy charge)
+    epra_levy_kes_kwh: 0.08
+    wra_levy_kes_kwh: 0.05
+    vat_frac: 0.16
+  wacc: 0.10                      # real, used by expansion model
+
+# ---------------------------------------------------------------------
+# CAPACITY EXPANSION (least-cost generation planning)
+# ---------------------------------------------------------------------
+expansion:
+  start_year: 2026
+  end_year: 2040
+  year_step: 2
+  discount_rate: 0.10
+  reserve_margin: 0.15            # firm capacity >= peak*(1+RM)
+  capacity_shortfall_usd_kw_yr: 600  # penalty if the reserve margin cannot be met (e.g. before candidates are available)
+  min_clean_share: 0.0            # e.g. 1.0 = 100% clean by policy (applies from clean_target_year)
+  clean_target_year: 2030
+  co2_cap_mt: null                # annual cap in MtCO2 or null
+  hydrology: normal

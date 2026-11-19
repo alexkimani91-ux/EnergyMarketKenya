@@ -1,0 +1,11 @@
+id,name,tech,fuel,capex_usd_kw,fom_usd_kw_yr,vom_usd_mwh,heat_rate_gj_mwh,life_yr,firm_credit,availability,profile,duration_h,efficiency_rt,max_build_mw_yr,max_total_mw,earliest_year,co2_t_mwh
+GEO_NEW,Geothermal flash (Olkaria VII / Menengai II / Baringo-Silali / Suswa),geothermal,NONE,4200,110,4,0,30,0.90,0.90,,0,0,140,2000,2028,0.035
+WIND_NEW,Wind (Marsabit / Meru / Isiolo),wind,NONE,1500,40,0,0,25,0.15,0.97,marsabit_wind,0,0,300,3000,2027,0
+SOLAR_NEW,Utility solar PV (single-axis tracking),solar,NONE,700,14,0,0,25,0.00,0.98,solar_north,0,0,500,6000,2027,0
+BESS_4H,Battery storage 4h,bess,NONE,1100,22,1,0,15,0.90,0.97,,4,0.87,400,4000,2027,0
+HGF_HYDRO,High Grand Falls hydro (Tana),hydro_new,NONE,3000,30,2,0,50,0.60,0.92,hydro_new,0,0,700,700,2033,0
+KARURA,Karura hydro,hydro_new,NONE,3200,30,2,0,50,0.60,0.92,hydro_new,0,0,90,90,2031,0
+CCGT_LNG,CCGT on LNG (Dongo Kundu / Mombasa),thermal,LNG,1050,25,4,6.8,30,0.92,0.92,,0,0,350,1400,2030,0
+GAS_PEAKER,Gas-engine / OCGT peaker (LNG),thermal,LNG,750,18,6,9.3,25,0.92,0.92,,0,0,200,800,2029,0
+NUCLEAR,Nuclear SMR / large LWR,nuclear,URANIUM,7500,120,9,10.5,60,0.90,0.90,,0,0,600,1200,2036,0
+ETH_IMPORT_X,Additional Ethiopia / EAPP imports,import,NONE,0,95,65,0,25,0.70,0.95,,0,0,200,800,2027,0

@@ -1,0 +1,16 @@
+# Policy case: 100% clean electricity from 2030 (Kenya's stated goal),
+# with a carbon price and stronger electrification loads.
+inherits: scenario_base.yaml
+scenario_name: "100% clean by 2030"
+
+carbon_price_usd_t: 30
+
+demand:
+  extra_loads:
+    e_mobility:   {zone: NAIROBI, annual_gwh: 400, profile: evening}
+    e_cooking:    {zone: NAIROBI, annual_gwh: 300, profile: cooking}
+    green_h2:     {zone: SOUTH_RIFT, annual_gwh: 500, profile: solar}
+
+expansion:
+  min_clean_share: 1.0
+  clean_target_year: 2030

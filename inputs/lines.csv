@@ -1,0 +1,8 @@
+line,from_zone,to_zone,capacity_mw,loss_frac,description
+SRIFT_NBI,SOUTH_RIFT,NAIROBI,1600,0.015,"Olkaria/Suswa-Nairobi 400kV + 220kV corridors"
+NBI_COAST,NAIROBI,COAST,900,0.030,"Nairobi-Mombasa 400kV (Isinya-Mariakani) + 220kV"
+MTK_NBI,MT_KENYA,NAIROBI,800,0.020,"Kamburu/Kiambere-Juja/Dandora 220kV"
+SRIFT_WEST,SOUTH_RIFT,WESTERN,550,0.020,"Olkaria-Lessos-Kisumu 220kV"
+NRIFT_SRIFT,NORTH_RIFT,SOUTH_RIFT,1000,0.025,"Loiyangalani-Suswa 400kV (LTWP) + Lessos-Olkaria"
+WEST_NRIFT,WESTERN,NORTH_RIFT,350,0.020,"Lessos-Turkwel / Eldoret 220kV"
+MTK_COAST,MT_KENYA,COAST,250,0.030,"Kiambere-Rabai 220kV"

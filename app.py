@@ -117,7 +117,7 @@ with tabs[0]:
              "ror_cf": "Run-of-river monthly capacity factors", "candidates": "Expansion candidates"}
     for k, label in names.items():
         with st.expander(label, expanded=(k == "gens")):
-            ss[f"tbl_{k}"] = st.data_editor(ss[f"base_{k}"], num_rows="dynamic", use_container_width=True,
+            ss[f"tbl_{k}"] = st.data_editor(ss[f"base_{k}"], num_rows="dynamic", width="stretch",
                                             key=f"ed_{scen}_{k}")
     try:
         inp_preview = current_inputs()
@@ -158,15 +158,15 @@ with tabs[1]:
         e_.metric("Curtailed TOP (GWh)", f"{k['Curtailed take-or-pay energy (GWh)']:,.0f}")
         d0 = st.date_input("Window start", value=None, help="Leave empty to show the week of system peak")
         days = st.slider("Days shown", 1, 31, 7)
-        st.plotly_chart(charts.dispatch_stack(r, d0, days), use_container_width=True)
+        st.plotly_chart(charts.dispatch_stack(r, d0, days), width="stretch")
         c1, c2 = st.columns(2)
-        c1.plotly_chart(charts.monthly_energy(r), use_container_width=True)
+        c1.plotly_chart(charts.monthly_energy(r), width="stretch")
         zone = c2.selectbox("Zone for price heat-map", r.zones)
-        c2.plotly_chart(charts.price_heatmap(r, zone), use_container_width=True)
+        c2.plotly_chart(charts.price_heatmap(r, zone), width="stretch")
         c1, c2 = st.columns(2)
-        c1.plotly_chart(charts.price_duration(r), use_container_width=True)
-        c2.plotly_chart(charts.reservoir_levels(r), use_container_width=True)
-        st.plotly_chart(charts.line_utilisation(r), use_container_width=True)
+        c1.plotly_chart(charts.price_duration(r), width="stretch")
+        c2.plotly_chart(charts.reservoir_levels(r), width="stretch")
+        st.plotly_chart(charts.line_utilisation(r), width="stretch")
         st.download_button("⬇ Hourly results (Excel)", to_excel({
             "generation_MW": r.df("gen"), "by_tech_MW": r.gen_by_tech(), "LMP": r.df("price"),
             "flows_MW": r.df("flow"), "demand_MW": r.df("demand"), "reservoir_MWh": r.df("s")}),
@@ -180,15 +180,15 @@ with tabs[2]:
         fin = ss["fin"]
         c1, c2 = st.columns([1, 1])
         c1.subheader("Key indicators")
-        c1.dataframe(fin["kpis"].to_frame("value").style.format("{:,.2f}"), use_container_width=True, height=720)
-        c2.plotly_chart(charts.tariff_waterfall(fin), use_container_width=True)
-        c2.plotly_chart(charts.cost_breakdown(fin), use_container_width=True)
-        st.plotly_chart(charts.plant_economics_chart(fin), use_container_width=True)
+        c1.dataframe(fin["kpis"].to_frame("value").style.format("{:,.2f}"), width="stretch", height=720)
+        c2.plotly_chart(charts.tariff_waterfall(fin), width="stretch")
+        c2.plotly_chart(charts.cost_breakdown(fin), width="stretch")
+        st.plotly_chart(charts.plant_economics_chart(fin), width="stretch")
         st.subheader("Plant-by-plant PPA settlement")
-        st.dataframe(fin["plants"].round(2), use_container_width=True)
+        st.dataframe(fin["plants"].round(2), width="stretch")
         if len(fin["storage"]):
             st.subheader("Storage")
-            st.dataframe(fin["storage"].round(2), use_container_width=True)
+            st.dataframe(fin["storage"].round(2), width="stretch")
         st.download_button("⬇ Settlement & tariff (Excel)", to_excel({"KPIs": fin["kpis"], "Tariff": fin["tariff"],
                            "Plants": fin["plants"], "Storage": fin["storage"]}), "kenya_settlement.xlsx")
 
@@ -219,12 +219,12 @@ with tabs[3]:
         st.metric("NPV of system cost (new-build + operation)", f"{x['npv_cost_musd']:,.0f} MUSD",
                   help=f"LP size {x['lp_size'][0]:,} variables; solved in {x['runtime_s']:.1f}s")
         c1, c2 = st.columns(2)
-        c1.plotly_chart(charts.expansion_capacity(x), use_container_width=True)
-        c2.plotly_chart(charts.expansion_builds(x), use_container_width=True)
-        c1.plotly_chart(charts.expansion_generation(x), use_container_width=True)
-        c2.plotly_chart(charts.expansion_prices(x), use_container_width=True)
-        st.dataframe(x["summary"].round(1), use_container_width=True)
-        st.dataframe(x["builds"][x["builds"].sum(axis=1) > 0.5].round(0), use_container_width=True)
+        c1.plotly_chart(charts.expansion_capacity(x), width="stretch")
+        c2.plotly_chart(charts.expansion_builds(x), width="stretch")
+        c1.plotly_chart(charts.expansion_generation(x), width="stretch")
+        c2.plotly_chart(charts.expansion_prices(x), width="stretch")
+        st.dataframe(x["summary"].round(1), width="stretch")
+        st.dataframe(x["builds"][x["builds"].sum(axis=1) > 0.5].round(0), width="stretch")
         st.download_button("⬇ Expansion plan (Excel)", to_excel({"Summary": x["summary"], "Builds": x["builds"],
                            "Capacity": x["capacity"], "Generation": x["generation"]}), "kenya_expansion.xlsx")
 
@@ -243,19 +243,19 @@ with tabs[4]:
             st.exception(ex_)
     if "mc" in ss:
         mc = ss["mc"]
-        st.dataframe(summarise(mc).round(2), use_container_width=True)
+        st.dataframe(summarise(mc).round(2), width="stretch")
         c1, c2 = st.columns(2)
         col = c1.selectbox("Distribution of", [k for k in mc.columns if mc[k].dtype != object and k != "draw"], index=0)
-        c1.plotly_chart(charts.mc_hist(mc, col), use_container_width=True)
+        c1.plotly_chart(charts.mc_hist(mc, col), width="stretch")
         xv = c2.selectbox("Driver", ["fuel_mult", "inflow_mult", "energy_growth", "wind_mult", "geo_avail_shift", "fx"])
-        c2.plotly_chart(charts.mc_scatter(mc, xv, col), use_container_width=True)
+        c2.plotly_chart(charts.mc_scatter(mc, xv, col), width="stretch")
         st.download_button("⬇ All draws (CSV)", mc.to_csv(index=False), "kenya_montecarlo.csv")
 
 # ------------------------------------------------------------------ comparison
 with tabs[5]:
     if ss["runs"]:
         comp = pd.DataFrame(ss["runs"])
-        st.dataframe(comp.style.format("{:,.2f}"), use_container_width=True, height=720)
+        st.dataframe(comp.style.format("{:,.2f}"), width="stretch", height=720)
         if st.button("Clear comparison"):
             ss["runs"] = {}
     else:

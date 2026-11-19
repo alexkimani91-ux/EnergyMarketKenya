@@ -1,0 +1,3 @@
+reservoir,name,max_storage_gwh,min_storage_gwh,initial_frac,description
+TANA,Seven Forks cascade (Masinga+Kiambere storage),1500,300,0.60,"Energy-equivalent storage of the whole Tana cascade (GWh at cascade head)"
+TURKWEL,Turkwel dam,900,200,0.65,"Turkwel gorge reservoir"

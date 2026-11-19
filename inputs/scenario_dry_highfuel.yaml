@@ -1,0 +1,15 @@
+# Stress case: drought year + oil price spike + weaker shilling.
+# Only the differences from the base case are listed.
+inherits: scenario_base.yaml
+scenario_name: "Drought + fuel shock 2026"
+
+hydrology:
+  scenario: dry
+  inflow_multiplier: 0.9
+
+fuels:
+  HFO:    {price: 16.5}
+  GASOIL: {price: 23.0}
+
+finance:
+  fx_kes_per_usd: 140.0

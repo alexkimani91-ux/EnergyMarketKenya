@@ -1,0 +1,3 @@
+id,name,zone,power_mw,duration_h,efficiency_rt,initial_soc_frac,capacity_charge_usd_kw_month,reserve_capable,commission_year,retire_year
+BESS_NBI,Grid BESS Nairobi (planned),NAIROBI,50,2,0.88,0.5,12.0,1,2026,2041
+BESS_COAST,Grid BESS Coast (planned),COAST,50,2,0.88,0.5,12.0,1,2027,2042
